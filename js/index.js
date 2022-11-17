@@ -2,11 +2,89 @@ const light = document.getElementsByClassName('light');
 const dark = document.getElementsByClassName('dark');
 const planet = document.getElementById('trippy');
 // const planet = document.getElementById('planet');
+
+//NavChange
+const sections = document.querySelectorAll('section');
+const navLi = document.querySelectorAll("nav .container ul li");
+
+window.addEventListener('scroll', () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+        }
+    })
+
+    navLi.forEach(li => {
+        li.classList.remove('active');
+
+        if (li.classList.contains(current)) {
+            li.classList.add('active')
+        }
+    })
+
+})
+
 function changePlanet() {
     planet.src = "assets/img/moon.png"
 }
+window.addEventListener("scroll", (event) => {
+    console.log("Scrolled");
+    myScrollFunction()
+});
+
+
+
+// function myScrollFunction() {
+//     console.log("Scroll is working");
+//     var card = gsap.timeline();
+//     card.to(
+//         ".card", {
+//         y: 100,
+//         duration:1,
+//         visibility: 'hidden'
+//     }
+//     )
+//     var carousel = gsap.timeline();
+//     carousel.to(
+//         ".hi-slide", {
+//         marginTop: '30vh'
+//     }
+//     )
+// }
 function darkMode() {
 
+
+
+    $(document).ready(function () {
+        $('html').animate({ scrollTop: 0 }, 1);
+        $('body').animate({ scrollTop: 0 }, 1);
+    });
+
+    var scrollOn = gsap.timeline();
+    scrollOn.to(
+        'body', {
+        overflow: "visible"
+    }
+    )
+
+    var showNav = gsap.timeline();
+    showNav.to("nav", {
+        delay: 1.5,
+        duration: 0.5,
+        outerHeight: 1,
+        visibility: 'visible'
+    })
+    var showSlider = gsap.timeline();
+    showSlider.to(".hi-slide", {
+        delay: 1.5,
+        duration: 0.5,
+        visibility: 'visible'
+    })
     var planet = gsap.timeline();
     planet.to(".trippypl", {
         opacity: 0,
@@ -39,36 +117,36 @@ function darkMode() {
         })
         .from("#character", {
             opacity: 0,
-            y:1000
+            y: 1000
         })
         .from("#glow", {
             opacity: 0,
-            y:1000
-        },"<")
-        // var landscape=gsap.timeline();
-        // landscape.to(".landscape", {
-        //         opacity: 0, 
-        //         y:100,
-        //         duration: 1,
-        //     },">")
-        //     .to(".darkbg", {
-        //         visibility:'visible',
-                
-        //     })  
-        //     .to(".darkbg", {
-        //       opacity:1,
-        //     //   y:-10
-        //     })  
-              
-        //     .to(".mainbg",{
-        //         opacity:0,
-        //        // y:100,
-        //         duration: 1,
-        //     },">")
-        //     .to(".darkbg2",{
-            
-        //         opacity:1,
-        //     })
+            y: 1000
+        }, "<")
+    // var landscape=gsap.timeline();
+    // landscape.to(".landscape", {
+    //         opacity: 0, 
+    //         y:100,
+    //         duration: 1,
+    //     },">")
+    //     .to(".darkbg", {
+    //         visibility:'visible',
+
+    //     })  
+    //     .to(".darkbg", {
+    //       opacity:1,
+    //     //   y:-10
+    //     })  
+
+    //     .to(".mainbg",{
+    //         opacity:0,
+    //        // y:100,
+    //         duration: 1,
+    //     },">")
+    //     .to(".darkbg2",{
+
+    //         opacity:1,
+    //     })
 
     var landscape = gsap.timeline();
     landscape
